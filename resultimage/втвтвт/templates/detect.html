@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+    <title>Detection Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .nav {
+            margin-bottom: 20px;
+        }
+        .nav a {
+            margin-right: 15px;
+            text-decoration: none;
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .image-box {
+            max-width: 45%;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="{{ url_for('upload_file') }}">Upload</a>
+        <a href="{{ url_for('search') }}">Search</a>
+        <a href="{{ url_for('batch_process') }}">Batch Process</a>
+    </div>
+    
+    <h1>Detection Results</h1>
+    
+    <h2>Detection Summary:</h2>
+    <pre>{{ text }}</pre>
+    
+    <h2>Metadata:</h2>
+    <pre>{% for item in metadata %}{{ item }}
+{% endfor %}</pre>
+    
+    <div class="image-container">
+        <div class="image-box">
+            <h3>Original Image:</h3>
+            <img src="{{ url_for('download_file', name=name) }}" alt="Original Image">
+        </div>
+        
+        <div class="image-box">
+            <h3>Detected Image:</h3>
+            <img src="{{ url_for('download_detected_file', name=name) }}" alt="Detected Image">
+        </div>
+    </div>
+    
+    <p><a href="{{ url_for('upload_file') }}">Upload another file</a></p>
+</body>
+</html>
+

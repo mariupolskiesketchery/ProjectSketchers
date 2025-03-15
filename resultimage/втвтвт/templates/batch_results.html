@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <title>Batch Processing Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .nav {
+            margin-bottom: 20px;
+        }
+        .nav a {
+            margin-right: 15px;
+            text-decoration: none;
+        }
+        .file-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .file-list li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="{{ url_for('upload_file') }}">Upload</a>
+        <a href="{{ url_for('search') }}">Search</a>
+        <a href="{{ url_for('batch_process') }}">Batch Process</a>
+    </div>
+    
+    <h1>Batch Processing Results</h1>
+    
+    {% if files %}
+        <p>Successfully processed {{ files|length }} file(s):</p>
+        <ul class="file-list">
+            {% for file in files %}
+                <li>
+                    <a href="{{ url_for('download_detected_file', name=file) }}">{{ file }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No files were processed.</p>
+    {% endif %}
+    
+    <p><a href="{{ url_for('batch_process') }}">Process more files</a></p>
+</body>
+</html>

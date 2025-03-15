@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <title>Search Images by Metadata</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .nav {
+            margin-bottom: 20px;
+        }
+        .nav a {
+            margin-right: 15px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="{{ url_for('upload_file') }}">Upload</a>
+        <a href="{{ url_for('search') }}">Search</a>
+        <a href="{{ url_for('batch_process') }}">Batch Process</a>
+    </div>
+    
+    <h1>Search Images by Metadata</h1>
+    <form method="post">
+        <label for="search_word">Enter search term:</label>
+        <input type="text" id="search_word" name="search_word" required>
+        <input type="submit" value="Search">
+    </form>
+</body>
+</html>
