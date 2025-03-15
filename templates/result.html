@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результат обработки</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+            opacity: 0.9;
+            background-image: url('static/dark_bg.jpg');
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #C0C0C0;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: fadeInHeading 1.5s ease-in-out forwards;
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        @keyframes fadeInHeading {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #C0C0C0;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            text-align: center;
+            animation: fadeInHeading 1.5s ease-in-out forwards;
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        img {
+            max-width: 45%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        a {
+            text-decoration: none;
+            background-color: #888;
+            color: white;
+            padding: 15px 25px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #808080;
+        }
+
+        footer {
+            margin-top: 5px;
+            text-align: center;
+            color: #C0C0C0;
+            font-size: 0.8em;
+            background-color: rgba(105, 105, 105, 0.7);
+            padding: 5px;
+            border-radius: 5px;
+            animation: fadeInFooter 1.5s ease-in-out forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        @keyframes fadeInFooter {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #696969;
+            border-radius: 15px;
+            box-shadow: 0 0px 15px rgba(105, 105, 105, 0.1);
+            margin-bottom: 80px;
+            animation: fadeInForm 2s ease-in-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInForm {
+            from {
+                opacity: 0;
+                background-color: rgba(255, 255, 255, 0);
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                background-color: rgba(105, 105, 105, 0.8);
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .result-info {
+            margin-top: 20px;
+            color: #fff;
+            font-size: 1.2rem;
+            background-color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .result-info p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <div class="header">
+            <h1>Результат обработки изображения</h1>
+        </div>
+
+        <h2>Исходное изображение</h2>
+        <div class="image-container">
+            <img src="data:image/png;base64,{{ original_image }}" alt="Original Image" />
+        </div>
+
+        <h2>Исправленное изображение</h2>
+        <div class="image-container">
+            <img src="data:image/png;base64,{{ corrected_image }}" alt="Corrected Image" />
+        </div>
+
+        <h2>Информация о результатах:</h2>
+        <div class="result-info">
+            <p>{{ detected_objects_message }}</p>
+            <p>{{ text_change_message }}</p>
+        </div>
+
+        <a href="/">Загрузить новое изображение</a>
+    </div>
+
+    <footer>
+        &copy; 2025 Project Sketchers from Mariupol
+    </footer>
+
+</body>
+</html>

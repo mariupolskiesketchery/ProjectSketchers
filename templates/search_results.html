@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты поиска</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            color: #555;
+        }
+
+        .image-container {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .image-item {
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            max-width: 300px;
+            height: auto;
+        }
+
+        a {
+            display: block;
+            margin-top: 5px;
+            color: #888;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #555;
+        }
+
+        .back-link {
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Результаты поиска для: "{{ search_word }}"</h1>
+
+    <div class="image-container">
+        {% if images %}
+            {% for image in images %}
+                <div class="image-item">
+                    <img src="/resultimage/{{ image }}" alt="{{ image }}">
+                    <a href="{{ url_for('download_file', filename=image) }}" download="{{ image }}">Скачать изображение</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Ничего не найдено.</p>
+        {% endif %}
+    </div>
+
+    <a href="/" class="back-link">Вернуться на главную</a>
+</body>
+</html>

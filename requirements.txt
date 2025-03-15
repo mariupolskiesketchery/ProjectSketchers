@@ -1,0 +1,7 @@
+Flask
+torch
+opencv-python
+numpy
+Pillow
+pytesseract
+requests
